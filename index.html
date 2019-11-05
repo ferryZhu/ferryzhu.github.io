@@ -298,40 +298,16 @@
 
       
         
-          
-            <h3 id="一、定义"><a href="#一、定义" class="headerlink" title="一、定义"></a>一、定义</h3><blockquote>
+          <h3 id="一、定义"><a href="#一、定义" class="headerlink" title="一、定义"></a>一、定义</h3><blockquote>
 <p>观察者模式定义了对象之间的一对多依赖，这样一来，当一个对象改变状态时，它所有的依赖者都会收到通知并自动更新。<br>观察者提供了一种对象设计，让主题和观察者之间松耦合。</p>
 </blockquote>
-<h3 id="二、使用场景"><a href="#二、使用场景" class="headerlink" title="二、使用场景"></a>二、使用场景</h3><blockquote>
-<p>1、当一个抽象模型有两个方面，其中一个方面依赖于另一方面。将这二者封装在独立的对象中以使它们可以各自独立地改变和复用。<br>2、当对一个对象的改变需要同时改变其他对象，而不知道具体有多少对象需要被改变。<br>3、当一个对象必须通知其他对象，而它又不能假定其他对象是谁。换言之，不希望这些对象是紧密耦合的</p>
-</blockquote>
-<h3 id="三、简单实现"><a href="#三、简单实现" class="headerlink" title="三、简单实现"></a>三、简单实现</h3><p>Cocoa通过两种方式实现了这种设计模式：<code>通知</code>和<code>KVO（Key-Value Observing）</code></p>
-<h5 id="通知：一对多"><a href="#通知：一对多" class="headerlink" title="通知：一对多"></a>通知：一对多</h5><ol>
-<li><p>添加订阅者</p>
-<pre><code>[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doSomething)  name:@&quot;notificationName&quot; object:nil];</code></pre></li>
-</ol>
-<ol start="2">
-<li><p>发布者发布通知</p>
-<pre><code>[[NSNotificationCenter defaultCenter] postNotificationName:@&quot;notificationName&quot; object:nil];</code></pre></li>
-<li><p>移除订阅</p>
-<pre><code>[[NSNotificationCenter defaultCenter] removeObserver:self name:@&quot;notificationName&quot; object:nil];</code></pre></li>
-<li><p>更新UI</p>
-<pre><code>- (void) doSomething {
-// TODO
-}</code></pre></li>
-</ol>
-<h5 id="KVO：一对一"><a href="#KVO：一对一" class="headerlink" title="KVO：一对一"></a>KVO：一对一</h5><ul>
-<li>通过<code>addObserver:forKeyPath:options:context:</code>方法注册观察者，观察者可以接收<code>keyPath</code>属性的变化事件。</li>
-<li>在观察者中实现<code>observeValueForKeyPath:ofObject:change:context:</code>方法，当<code>keyPath</code>属性发生改变后，<code>KVO</code>会回调这个方法来通知观察者。</li>
-<li>当观察者不需要监听时，可以调用<code>removeObserver:forKeyPath:</code>方法将<code>KVO</code>移除。需要注意的是，调用<code>removeObserver</code>需要在观察者消失之前，否则会导致<code>Crash</code>。</li>
-</ul>
-<h3 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h3><p> 观察者模式的主要的作用就是对对象解耦，将观察者和被观察者完全隔离。</p>
-<ul>
-<li>观察者模式的优点:<br>  观察者模式解除了主题和具体观察者的耦合，让耦合的双方都依赖于抽象，而不是依赖具体。</li>
-<li>观察者模式的缺点<br>程序中包括一个被观察者和多个被观察者，开发和调试比较复杂，容易造成客户端的内存泄漏。</li>
-</ul>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/11/05/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -448,61 +424,16 @@
 
       
         
-          
-            <h3 id="一、定义"><a href="#一、定义" class="headerlink" title="一、定义"></a>一、定义</h3><blockquote>
+          <h3 id="一、定义"><a href="#一、定义" class="headerlink" title="一、定义"></a>一、定义</h3><blockquote>
 <p>策略模式定义了算法族，分别封装起来，让它们之间可以相互替换，此模式让算法的变化独立于使用算法的客户。</p>
 </blockquote>
-<h3 id="二、适用场景"><a href="#二、适用场景" class="headerlink" title="二、适用场景"></a>二、适用场景</h3><blockquote>
-<p>1、 多个类只区别在表现行为不同，可以使用Strategy模式，在运行时动态选择具体要执行的行为。<br>2、 需要在不同情况下使用不同的策略(算法)，或者策略还可能在未来用其它方式来实现。<br>3、 对客户隐藏具体策略(算法)的实现细节，彼此完全独立。—<a href="https://link.jianshu.com?t=http://baike.baidu.com/link?url=hxsqltjojbaJ8x8d5CzhjYnNKAPtKP6Lekh3OvUYlMjyBhNN5eZerk0RbwnsB8XhaIpzgyeBUH5p7rYsSOnYEK" target="_blank" rel="noopener">百度百科</a></p>
-</blockquote>
-<h3 id="三、具体实现"><a href="#三、具体实现" class="headerlink" title="三、具体实现"></a>三、具体实现</h3><blockquote>
-<p>例：有一个动作冒险游戏，每个角色只能使用一种武器，但是可以在游戏过程中更换武器。</p>
-</blockquote>
-<p>1.将武器抽象为一个行为接口WeaponBehavior</p>
-<pre><code>@protocol WeaponBehavior &lt;NSObject&gt;
-
-@required
-
- - (void)userWean;
-
-@end</code></pre><p>2.设计角色的抽象类，将fight方法委托给行为类执行</p>
-<pre><code>// Character.h
-@interface Character : NSObject
-
-@property (nonatomic, strong) id&lt;WeaponBehavior&gt; weaPonVegavior;
-
- - (void)fight;
-
-@end
-
- // Character.m
-
-- (void)fight
-{
-    [self.weaPonVegavior userWean];
-}</code></pre><p>3.继承抽象类创建角色类，这里创建了个King类</p>
-<pre><code>@interface King : Character
-@end</code></pre><p>4.创建具体的行为类（各类武器），实现行为接口</p>
-<pre><code>// AxeBehavior.h
-@interface AxeBehavior : NSObject&lt;WeaponBehavior&gt;
-@end
-// AxeBehavior.m
-@implementation AxeBehavior
-
-- (void)userWean
-{
-    NSLog(@&quot;用斧子劈砍&quot;);
-}
-
-@end</code></pre><p>5.实现更换武器</p>
-<pre><code> Character *king = [[King alloc] init];
-[king setWeaPonVegavior:[SwordBehavior new]];
-// [king setWeaPonVegavior:[KnifeBehavior new]];
-// [king setWeaPonVegavior:[AxeBehavior new]];
-[king fight];</code></pre><p>实现了角色（用户）和武器（算法）的相互独立，更改或添加武器（算法），也不会影响到角色（用户）</p>
-<p><a href="https://github.com/ferryZhu/DesignPattern" target="_blank" rel="noopener">Demo地址</a></p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/11/04/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
