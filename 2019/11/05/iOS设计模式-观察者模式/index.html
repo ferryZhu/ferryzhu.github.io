@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -79,14 +79,14 @@
 
 
 
-<meta name="description" content="iOS设计模式-观察者模式一、定义 观察者模式定义了对象之间的一对多依赖，这样一来，当一个对象改变状态时，它所有的依赖者都会收到通知并自动更新。观察者提供了一种对象设计，让主题和观察者之间松耦合。  二、使用场景 1、当一个抽象模型有两个方面，其中一个方面依赖于另一方面。将这二者封装在独立的对象中以使它们可以各自独立地改变和复用。2、当对一个对象的改变需要同时改变其他对象，而不知道具体有多少对象需">
+<meta name="description" content="一、定义 观察者模式定义了对象之间的一对多依赖，这样一来，当一个对象改变状态时，它所有的依赖者都会收到通知并自动更新。观察者提供了一种对象设计，让主题和观察者之间松耦合。  二、使用场景 1、当一个抽象模型有两个方面，其中一个方面依赖于另一方面。将这二者封装在独立的对象中以使它们可以各自独立地改变和复用。2、当对一个对象的改变需要同时改变其他对象，而不知道具体有多少对象需要被改变。3、当一个对象必">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ObserverPatter">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;05&#x2F;ObserverPatter&#x2F;index.html">
-<meta property="og:site_name" content="清悠">
-<meta property="og:description" content="iOS设计模式-观察者模式一、定义 观察者模式定义了对象之间的一对多依赖，这样一来，当一个对象改变状态时，它所有的依赖者都会收到通知并自动更新。观察者提供了一种对象设计，让主题和观察者之间松耦合。  二、使用场景 1、当一个抽象模型有两个方面，其中一个方面依赖于另一方面。将这二者封装在独立的对象中以使它们可以各自独立地改变和复用。2、当对一个对象的改变需要同时改变其他对象，而不知道具体有多少对象需">
+<meta property="og:title" content="iOS设计模式-观察者模式">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;05&#x2F;iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F&#x2F;index.html">
+<meta property="og:site_name" content="渡口">
+<meta property="og:description" content="一、定义 观察者模式定义了对象之间的一对多依赖，这样一来，当一个对象改变状态时，它所有的依赖者都会收到通知并自动更新。观察者提供了一种对象设计，让主题和观察者之间松耦合。  二、使用场景 1、当一个抽象模型有两个方面，其中一个方面依赖于另一方面。将这二者封装在独立的对象中以使它们可以各自独立地改变和复用。2、当对一个对象的改变需要同时改变其他对象，而不知道具体有多少对象需要被改变。3、当一个对象必">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-05T02:25:16.366Z">
+<meta property="og:updated_time" content="2019-11-05T05:53:42.578Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -95,7 +95,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -117,13 +117,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/11/05/ObserverPatter/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/11/05/iOS设计模式-观察者模式/"/>
 
 
 
 
 
-  <title>ObserverPatter | 清悠</title>
+  <title>iOS设计模式-观察者模式 | 渡口</title>
   
 
 
@@ -153,7 +153,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">清悠</span>
+        <span class="site-title">渡口</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -179,7 +179,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/%20" rel="section">
+          <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
@@ -189,7 +189,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/%20" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -230,7 +230,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/05/ObserverPatter/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/05/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="渡口">
@@ -239,7 +239,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="清悠">
+      <meta itemprop="name" content="渡口">
     </span>
 
     
@@ -247,7 +247,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ObserverPatter</h1>
+          <h1 class="post-title" itemprop="name headline">iOS设计模式-观察者模式</h1>
         
 
         <div class="post-meta">
@@ -297,7 +297,7 @@
       
 
       
-        <h1 id="iOS设计模式-观察者模式"><a href="#iOS设计模式-观察者模式" class="headerlink" title="iOS设计模式-观察者模式"></a>iOS设计模式-观察者模式</h1><h3 id="一、定义"><a href="#一、定义" class="headerlink" title="一、定义"></a>一、定义</h3><blockquote>
+        <h3 id="一、定义"><a href="#一、定义" class="headerlink" title="一、定义"></a>一、定义</h3><blockquote>
 <p>观察者模式定义了对象之间的一对多依赖，这样一来，当一个对象改变状态时，它所有的依赖者都会收到通知并自动更新。<br>观察者提供了一种对象设计，让主题和观察者之间松耦合。</p>
 </blockquote>
 <h3 id="二、使用场景"><a href="#二、使用场景" class="headerlink" title="二、使用场景"></a>二、使用场景</h3><blockquote>
@@ -352,8 +352,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/11/04/StrategyPattern/" rel="next" title="StrategyPattern">
-                <i class="fa fa-chevron-left"></i> StrategyPattern
+              <a href="/2019/11/04/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/" rel="next" title="iOS设计模式-策略模式">
+                <i class="fa fa-chevron-left"></i> iOS设计模式-策略模式
               </a>
             
           </div>
@@ -435,7 +435,7 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/%20%7C%7C%20archive">
+                <a href="/archives/%7C%7C%20archive">
               
                   <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">日志</span>
@@ -474,7 +474,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#iOS设计模式-观察者模式"><span class="nav-number">1.</span> <span class="nav-text">iOS设计模式-观察者模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、定义"><span class="nav-number">1.0.1.</span> <span class="nav-text">一、定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、使用场景"><span class="nav-number">1.0.2.</span> <span class="nav-text">二、使用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、简单实现"><span class="nav-number">1.0.3.</span> <span class="nav-text">三、简单实现</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#通知：一对多"><span class="nav-number">1.0.3.0.1.</span> <span class="nav-text">通知：一对多</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#KVO：一对一"><span class="nav-number">1.0.3.0.2.</span> <span class="nav-text">KVO：一对一</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、总结"><span class="nav-number">1.0.4.</span> <span class="nav-text">四、总结</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、定义"><span class="nav-number">1.</span> <span class="nav-text">一、定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、使用场景"><span class="nav-number">2.</span> <span class="nav-text">二、使用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、简单实现"><span class="nav-number">3.</span> <span class="nav-text">三、简单实现</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#通知：一对多"><span class="nav-number">3.0.1.</span> <span class="nav-text">通知：一对多</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#KVO：一对一"><span class="nav-number">3.0.2.</span> <span class="nav-text">KVO：一对一</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、总结"><span class="nav-number">4.</span> <span class="nav-text">四、总结</span></a></li></ol></div>
             
 
           </div>
@@ -512,7 +512,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
 
 
 
