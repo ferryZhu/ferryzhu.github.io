@@ -79,14 +79,14 @@
 
 
 
-<meta name="description" content="策略">
+<meta name="description" content="策略模式###一、定义  策略模式定义了算法族，分别封装起来，让它们之间可以相互替换，此模式让算法的变化独立于使用算法的客户。  ###二、适用场景  1、 多个类只区别在表现行为不同，可以使用Strategy模式，在运行时动态选择具体要执行的行为。2、 需要在不同情况下使用不同的策略(算法)，或者策略还可能在未来用其它方式来实现。3、 对客户隐藏具体策略(算法)的实现细节，彼此完全独立。—百度百">
 <meta property="og:type" content="article">
 <meta property="og:title" content="StrategyPattern">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;04&#x2F;StrategyPattern&#x2F;index.html">
 <meta property="og:site_name" content="清悠">
-<meta property="og:description" content="策略">
+<meta property="og:description" content="策略模式###一、定义  策略模式定义了算法族，分别封装起来，让它们之间可以相互替换，此模式让算法的变化独立于使用算法的客户。  ###二、适用场景  1、 多个类只区别在表现行为不同，可以使用Strategy模式，在运行时动态选择具体要执行的行为。2、 需要在不同情况下使用不同的策略(算法)，或者策略还可能在未来用其它方式来实现。3、 对客户隐藏具体策略(算法)的实现细节，彼此完全独立。—百度百">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-04T11:19:42.642Z">
+<meta property="og:updated_time" content="2019-11-05T01:28:57.382Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -297,7 +297,60 @@
       
 
       
-        <p>策略</p>
+        <h1 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h1><p>###一、定义</p>
+<blockquote>
+<p>策略模式定义了算法族，分别封装起来，让它们之间可以相互替换，此模式让算法的变化独立于使用算法的客户。</p>
+</blockquote>
+<p>###二、适用场景</p>
+<blockquote>
+<p>1、 多个类只区别在表现行为不同，可以使用Strategy模式，在运行时动态选择具体要执行的行为。<br>2、 需要在不同情况下使用不同的策略(算法)，或者策略还可能在未来用其它方式来实现。<br>3、 对客户隐藏具体策略(算法)的实现细节，彼此完全独立。—<a href="https://link.jianshu.com?t=http://baike.baidu.com/link?url=hxsqltjojbaJ8x8d5CzhjYnNKAPtKP6Lekh3OvUYlMjyBhNN5eZerk0RbwnsB8XhaIpzgyeBUH5p7rYsSOnYEK" target="_blank" rel="noopener">百度百科</a></p>
+</blockquote>
+<h3 id="三、具体实现"><a href="#三、具体实现" class="headerlink" title="三、具体实现"></a>三、具体实现</h3><blockquote>
+<p>例：有一个动作冒险游戏，每个角色只能使用一种武器，但是可以在游戏过程中更换武器。</p>
+</blockquote>
+<p>1.将武器抽象为一个行为接口WeaponBehavior</p>
+<pre><code>@protocol WeaponBehavior &lt;NSObject&gt;
+
+@required
+
+ - (void)userWean;
+
+@end</code></pre><p>2.设计角色的抽象类，将fight方法委托给行为类执行</p>
+<pre><code>// Character.h
+@interface Character : NSObject
+
+@property (nonatomic, strong) id&lt;WeaponBehavior&gt; weaPonVegavior;
+
+ - (void)fight;
+
+@end
+
+ // Character.m
+
+- (void)fight
+{
+    [self.weaPonVegavior userWean];
+}</code></pre><p>3.继承抽象类创建角色类，这里创建了个King类</p>
+<pre><code>@interface King : Character
+@end</code></pre><p>4.创建具体的行为类（各类武器），实现行为接口</p>
+<pre><code>// AxeBehavior.h
+@interface AxeBehavior : NSObject&lt;WeaponBehavior&gt;
+@end
+// AxeBehavior.m
+@implementation AxeBehavior
+
+- (void)userWean
+{
+    NSLog(@&quot;用斧子劈砍&quot;);
+}
+
+@end</code></pre><p>5.实现更换武器</p>
+<pre><code> Character *king = [[King alloc] init];
+[king setWeaPonVegavior:[SwordBehavior new]];
+// [king setWeaPonVegavior:[KnifeBehavior new]];
+// [king setWeaPonVegavior:[AxeBehavior new]];
+[king fight];</code></pre><p>实现了角色（用户）和武器（算法）的相互独立，更改或添加武器（算法），也不会影响到角色（用户）</p>
+<p><a href="https://github.com/ferryZhu/DesignPattern" target="_blank" rel="noopener">Demo地址</a></p>
 
       
     </div>
@@ -382,8 +435,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -425,6 +487,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#策略模式"><span class="nav-number">1.</span> <span class="nav-text">策略模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#三、具体实现"><span class="nav-number">1.0.1.</span> <span class="nav-text">三、具体实现</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
