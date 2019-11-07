@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="渡口">
 <meta property="og:description" content="一、定义 装饰者模式动态的将责任附加到对象上。若要扩展功能，装饰者提供了比继承更有弹性的替代方案。  装饰者模式采用了多用组合，少用继承、对扩展开放，对修改关闭的OO原则。一个组件可以被无数个装饰者包装。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-06T09:04:13.451Z">
+<meta property="og:updated_time" content="2019-11-07T01:58:21.087Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -148,7 +148,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta custom-logo">
     
 
     <div class="custom-logo-site-title">
@@ -367,108 +367,25 @@
 </blockquote>
 <p>首先我们先确定咖啡是被装饰者，调料是装饰者，一个咖啡理论上可以添加无数的调料。</p>
 <ol>
-<li><p>创建咖啡协议，所有的咖啡都有名称和价格属性。</p>
-<pre><code>// Baverage.h
-@protocol Baverage &lt;NSObject&gt;
-
-@required
-
-- (NSString *)name;
-
-- (double)cost;
-
-@end</code></pre></li>
-<li><p>创建调料协议，装饰者和被装饰者必须是一样的类型，也就是需要有共同的超类（咖啡和调料的共同超类是NSObject，分别实现不同的协议）</p>
-<pre><code>// Condiment.h
-@protocol Condiment &lt;Baverage&gt;
-
-- (instancetype)initWithBaverage:(id&lt;Baverage&gt;)baverage;
-
-@end</code></pre></li>
-<li><p>实现具体的咖啡对象,分别实现咖啡协议</p>
-<pre><code>// Espresso.m
-@implementation Espresso
-
-- (NSString *)name {
-    return @&quot;Espresso&quot;;
-}
-
-- (double)cost {
-    return 1.99;
-}
-
-@end
-
-// HouseBlend.m
-@implementation HouseBlend
-
-- (NSString *)name {
-    return @&quot;HouseBlend&quot;;
-}
-
-- (double)cost {
-    return 0.9;
-}
-
-@end</code></pre></li>
-<li><p>实现具体的调料对象，实现调料协议.需要引用一个咖啡实例。</p>
-<pre><code>// Moca.m
-@implementation Moca
-
-- (instancetype)initWithBaverage:(id&lt;Baverage&gt;)baverage
-{
-    if (self = [super init]) {
-        _baverage = baverage;
-    }
-
-    return self;
-}
-
-- (NSString *)name {
-    return [NSString stringWithFormat:@&quot;%@, Moca&quot;, [self.baverage name]];
-}
-
-- (double)cost {
-    return 0.3 + [self.baverage cost];
-}
-
-@end
-
-// Milk.m
-@implementation Milk
-
-- (instancetype)initWithBaverage:(id&lt;Baverage&gt;)baverage
-{
-    if (self = [super init]) {
-        _baverage = baverage;
-    }
-
-    return self;
-}
-
-- (NSString *)name {
-    return [NSString stringWithFormat:@&quot;%@, Milk&quot;, [self.baverage name]];
-}
-
-- (double)cost {
-    return 0.1 + [self.baverage cost];
-}
-
-@end</code></pre></li>
-<li><p>开始点咖啡</p>
-<pre><code>// 来一杯添加摩卡、牛奶、豆浆的浓缩咖啡
-id&lt;Baverage&gt; baverage = [[Espresso alloc] init];
-baverage = [[Moca alloc] initWithBaverage:baverage];
-baverage = [[Milk alloc] initWithBaverage:baverage];
-baverage = [[Soy alloc] initWithBaverage:baverage];
-NSLog(@&quot;%@ --- %lf&quot;,[baverage name], [baverage cost]);
-
-// 一杯加双倍摩卡的黑咖啡
-id&lt;Baverage&gt; houseBlend = [[HouseBlend alloc] init];
-houseBlend = [[Moca alloc] initWithBaverage:houseBlend];
-houseBlend = [[Moca alloc] initWithBaverage:houseBlend];
-NSLog(@&quot;%@ --- %lf&quot;,[houseBlend name], [houseBlend cost]);</code></pre></li>
+<li>创建咖啡协议，所有的咖啡都有名称和价格属性。</li>
 </ol>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Baverage.h</span></span><br><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">Baverage</span> &lt;<span class="title">NSObject</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">@required</span></span><br><span class="line">    </span><br><span class="line">- (<span class="built_in">NSString</span> *)name;</span><br><span class="line">     </span><br><span class="line">- (<span class="keyword">double</span>)cost;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>创建调料协议，装饰者和被装饰者必须是一样的类型，也就是需要有共同的超类（咖啡和调料的共同超类是NSObject，分别实现不同的协议）</li>
+</ol>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Condiment.h</span></span><br><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">Condiment</span> &lt;<span class="title">Baverage</span>&gt;</span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">instancetype</span>)initWithBaverage:(<span class="keyword">id</span>&lt;Baverage&gt;)baverage;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line">```  </span><br><span class="line"><span class="number">3.</span> 实现具体的咖啡对象,分别实现咖啡协议</span><br><span class="line">```objc</span><br><span class="line"><span class="comment">// Espresso.m</span></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Espresso</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="built_in">NSString</span> *)name &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">@"Espresso"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">double</span>)cost &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1.99</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line">   </span><br><span class="line"><span class="comment">// HouseBlend.m</span></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">HouseBlend</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="built_in">NSString</span> *)name &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">@"HouseBlend"</span>;</span><br><span class="line">&#125;</span><br><span class="line">   </span><br><span class="line">- (<span class="keyword">double</span>)cost &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0.9</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>实现具体的调料对象，实现调料协议.需要引用一个咖啡实例。</li>
+</ol>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Moca.m</span></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Moca</span></span></span><br><span class="line">   </span><br><span class="line">- (<span class="keyword">instancetype</span>)initWithBaverage:(<span class="keyword">id</span>&lt;Baverage&gt;)baverage</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> init]) &#123;</span><br><span class="line">      _baverage = baverage;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br><span class="line">   </span><br><span class="line">- (<span class="built_in">NSString</span> *)name &#123;</span><br><span class="line">  <span class="keyword">return</span> [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@, Moca"</span>, [<span class="keyword">self</span>.baverage name]];</span><br><span class="line">&#125;</span><br><span class="line">   </span><br><span class="line">- (<span class="keyword">double</span>)cost &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0.3</span> + [<span class="keyword">self</span>.baverage cost];</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line">   </span><br><span class="line"><span class="comment">// Milk.m</span></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Milk</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">instancetype</span>)initWithBaverage:(<span class="keyword">id</span>&lt;Baverage&gt;)baverage</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> init]) &#123;</span><br><span class="line">      _baverage = baverage;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br><span class="line">   </span><br><span class="line">- (<span class="built_in">NSString</span> *)name &#123;</span><br><span class="line">  <span class="keyword">return</span> [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@, Milk"</span>, [<span class="keyword">self</span>.baverage name]];</span><br><span class="line">&#125;</span><br><span class="line">   </span><br><span class="line">- (<span class="keyword">double</span>)cost &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0.1</span> + [<span class="keyword">self</span>.baverage cost];</span><br><span class="line">&#125;</span><br><span class="line">   </span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>开始点咖啡</li>
+</ol>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 来一杯添加摩卡、牛奶、豆浆的浓缩咖啡</span></span><br><span class="line"><span class="keyword">id</span>&lt;Baverage&gt; baverage = [[Espresso alloc] init];</span><br><span class="line">baverage = [[Moca alloc] initWithBaverage:baverage];</span><br><span class="line">baverage = [[Milk alloc] initWithBaverage:baverage];</span><br><span class="line">baverage = [[Soy alloc] initWithBaverage:baverage];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@ --- %lf"</span>,[baverage name], [baverage cost]);</span><br><span class="line">   </span><br><span class="line"><span class="comment">// 一杯加双倍摩卡的黑咖啡</span></span><br><span class="line"><span class="keyword">id</span>&lt;Baverage&gt; houseBlend = [[HouseBlend alloc] init];</span><br><span class="line">houseBlend = [[Moca alloc] initWithBaverage:houseBlend];</span><br><span class="line">houseBlend = [[Moca alloc] initWithBaverage:houseBlend];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@ --- %lf"</span>,[houseBlend name], [houseBlend cost]);</span><br></pre></td></tr></table></figure>
+
 <p>其实装饰模式在使用的时候，和程序中的递归操作很类似，逐级查询价格，逐级返回，最终得到一个总的价格。</p>
 <h3 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h3><h5 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h5><ol>
 <li>装饰者模式与继承关系的目的都是要扩展对象的功能，但是装饰者模式可以提供比继承更多的灵活性。</li>

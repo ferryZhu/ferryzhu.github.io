@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="渡口">
 <meta property="og:description" content="一、定义 观察者模式定义了对象之间的一对多依赖，这样一来，当一个对象改变状态时，它所有的依赖者都会收到通知并自动更新。观察者提供了一种对象设计，让主题和观察者之间松耦合。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-05T06:13:12.479Z">
+<meta property="og:updated_time" content="2019-11-07T01:58:22.080Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -148,7 +148,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta custom-logo">
     
 
     <div class="custom-logo-site-title">
@@ -359,19 +359,24 @@
 </blockquote>
 <h3 id="三、简单实现"><a href="#三、简单实现" class="headerlink" title="三、简单实现"></a>三、简单实现</h3><p>Cocoa通过两种方式实现了这种设计模式：<code>通知</code>和<code>KVO（Key-Value Observing）</code></p>
 <h5 id="通知：一对多"><a href="#通知：一对多" class="headerlink" title="通知：一对多"></a>通知：一对多</h5><ol>
-<li><p>添加订阅者</p>
-<pre><code>[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doSomething)  name:@&quot;notificationName&quot; object:nil];</code></pre></li>
+<li>添加订阅者</li>
 </ol>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="built_in">NSNotificationCenter</span> defaultCenter] addObserver:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(doSomething)  name:<span class="string">@"notificationName"</span> object:<span class="literal">nil</span>];</span><br></pre></td></tr></table></figure>
+
 <ol start="2">
-<li><p>发布者发布通知</p>
-<pre><code>[[NSNotificationCenter defaultCenter] postNotificationName:@&quot;notificationName&quot; object:nil];</code></pre></li>
-<li><p>移除订阅</p>
-<pre><code>[[NSNotificationCenter defaultCenter] removeObserver:self name:@&quot;notificationName&quot; object:nil];</code></pre></li>
-<li><p>更新UI</p>
-<pre><code>- (void) doSomething {
-// TODO
-}</code></pre></li>
+<li>发布者发布通知</li>
 </ol>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="built_in">NSNotificationCenter</span> defaultCenter] postNotificationName:<span class="string">@"notificationName"</span> object:<span class="literal">nil</span>];</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>移除订阅</li>
+</ol>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="built_in">NSNotificationCenter</span> defaultCenter] removeObserver:<span class="keyword">self</span> name:<span class="string">@"notificationName"</span> object:<span class="literal">nil</span>];</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>更新UI</li>
+</ol>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>) doSomething &#123;</span><br><span class="line">    <span class="comment">// TODO</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h5 id="KVO：一对一"><a href="#KVO：一对一" class="headerlink" title="KVO：一对一"></a>KVO：一对一</h5><ul>
 <li>通过<code>addObserver:forKeyPath:options:context:</code>方法注册观察者，观察者可以接收<code>keyPath</code>属性的变化事件。</li>
 <li>在观察者中实现<code>observeValueForKeyPath:ofObject:change:context:</code>方法，当<code>keyPath</code>属性发生改变后，<code>KVO</code>会回调这个方法来通知观察者。</li>
