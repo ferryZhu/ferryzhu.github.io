@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="一、简介 定义  命令模式将“请求”封装成对象，以便使用不同的请求、队列或者日志来参数化其他对象。实现请求和实现的二者之间的松耦合，命令模式也支持可撤销的操作。   核心对象  调用者(Invoker): 持有一个命名对象，并在某个时间点调用命令对象的execute方法。 命令对象(commend): 持有一个接受者，和一个execute方法，在execute值中执行接收者的动作。 接收者(Rec">
+<meta name="description" content="一、简介 定义 命令模式将“请求”封装成对象，以便使用不同的请求、队列或者日志来参数化其他对象。实现请求和实现的二者之间的松耦合，命令模式也支持可撤销的操作。">
 <meta name="keywords" content="iOS,设计模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS设计模式-命令模式">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;30&#x2F;iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F&#x2F;index.html">
 <meta property="og:site_name" content="渡口">
-<meta property="og:description" content="一、简介 定义  命令模式将“请求”封装成对象，以便使用不同的请求、队列或者日志来参数化其他对象。实现请求和实现的二者之间的松耦合，命令模式也支持可撤销的操作。   核心对象  调用者(Invoker): 持有一个命名对象，并在某个时间点调用命令对象的execute方法。 命令对象(commend): 持有一个接受者，和一个execute方法，在execute值中执行接收者的动作。 接收者(Rec">
+<meta property="og:description" content="一、简介 定义 命令模式将“请求”封装成对象，以便使用不同的请求、队列或者日志来参数化其他对象。实现请求和实现的二者之间的松耦合，命令模式也支持可撤销的操作。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-30T07:53:22.013Z">
+<meta property="og:updated_time" content="2019-12-30T10:40:32.051Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -351,13 +351,11 @@
 
       
         <h3 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h3><ol>
-<li><p>定义</p>
-<blockquote>
+<li>定义<blockquote>
 <p>命令模式将“请求”封装成对象，以便使用不同的请求、队列或者日志来参数化其他对象。实现请求和实现的二者之间的松耦合，命令模式也支持可撤销的操作。</p>
 </blockquote>
-</li>
-<li><p>核心对象</p>
-<ul>
+<a id="more"></a></li>
+<li>核心对象<ul>
 <li>调用者(Invoker): 持有一个命名对象，并在某个时间点调用命令对象的execute方法。</li>
 <li>命令对象(commend): 持有一个接受者，和一个execute方法，在execute值中执行接收者的动作。</li>
 <li>接收者(Receiver): 动作的执行者</li>
