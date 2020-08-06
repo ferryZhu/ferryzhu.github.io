@@ -87,10 +87,8 @@
 <meta property="og:site_name" content="渡口">
 <meta property="og:description" content="iOS键盘遮挡文字输入框 当输入框聚焦，键盘弹出时，Android系统会自动露出被遮挡部分，但iOS系统需要开发者根据键盘高度及输入框位置计算遮挡部分，使其上移露出。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;08&#x2F;06&#x2F;ReactNative-%E9%94%AE%E7%9B%98%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB&#x2F;media&#x2F;15966935763596&#x2F;15966969538662.jpg">
-<meta property="og:updated_time" content="2020-08-06T07:22:18.065Z">
+<meta property="og:updated_time" content="2020-08-06T07:24:43.883Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;08&#x2F;06&#x2F;ReactNative-%E9%94%AE%E7%9B%98%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB&#x2F;media&#x2F;15966935763596&#x2F;15966969538662.jpg">
 
 
 
@@ -380,7 +378,6 @@
 <h4 id="Android键盘收起TextInput未失去焦点"><a href="#Android键盘收起TextInput未失去焦点" class="headerlink" title="Android键盘收起TextInput未失去焦点"></a>Android键盘收起TextInput未失去焦点</h4><blockquote>
 <p>开发过程中，发现Android机中，点击虚拟按键中的返回键或键盘中的收起键，键盘会收起，但是TextInput的焦点还在，这时TextInput中的onEndEditing等不会被调用，导致部分数据丢失。</p>
 </blockquote>
-<p><img src="media/15966935763596/15966969538662.jpg" alt="截图1-w250"></p>
 <p>可以监听键盘隐藏的回调，使TextInput失去焦点。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">_keyboardDidHide(e) &#123;</span><br><span class="line">   <span class="keyword">let</span> dismissKeyboard = <span class="built_in">require</span>(<span class="string">'dismissKeyboard'</span>)</span><br><span class="line">    dismissKeyboard()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
