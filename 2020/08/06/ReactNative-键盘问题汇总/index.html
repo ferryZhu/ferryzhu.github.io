@@ -79,16 +79,16 @@
 
 
 
-<meta name="description" content="1. iOS键盘遮挡文字输入框 当输入框聚焦，键盘弹出时，Android系统会自动露出被遮挡部分，但iOS系统需要开发者根据键盘高度及输入框位置计算遮挡部分，使其上移露出。">
+<meta name="description" content="iOS键盘遮挡文字输入框 当输入框聚焦，键盘弹出时，Android系统会自动露出被遮挡部分，但iOS系统需要开发者根据键盘高度及输入框位置计算遮挡部分，使其上移露出。">
 <meta name="keywords" content="React Native">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React Native键盘问题汇总">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;08&#x2F;06&#x2F;ReactNative-%E9%94%AE%E7%9B%98%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB&#x2F;index.html">
 <meta property="og:site_name" content="渡口">
-<meta property="og:description" content="1. iOS键盘遮挡文字输入框 当输入框聚焦，键盘弹出时，Android系统会自动露出被遮挡部分，但iOS系统需要开发者根据键盘高度及输入框位置计算遮挡部分，使其上移露出。">
+<meta property="og:description" content="iOS键盘遮挡文字输入框 当输入框聚焦，键盘弹出时，Android系统会自动露出被遮挡部分，但iOS系统需要开发者根据键盘高度及输入框位置计算遮挡部分，使其上移露出。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;08&#x2F;06&#x2F;ReactNative-%E9%94%AE%E7%9B%98%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB&#x2F;media&#x2F;15966935763596&#x2F;15966969538662.jpg">
-<meta property="og:updated_time" content="2020-08-06T07:17:28.880Z">
+<meta property="og:updated_time" content="2020-08-06T07:20:28.743Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;08&#x2F;06&#x2F;ReactNative-%E9%94%AE%E7%9B%98%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB&#x2F;media&#x2F;15966935763596&#x2F;15966969538662.jpg">
 
@@ -352,7 +352,7 @@
       
 
       
-        <h4 id="1-iOS键盘遮挡文字输入框"><a href="#1-iOS键盘遮挡文字输入框" class="headerlink" title="1. iOS键盘遮挡文字输入框"></a>1. iOS键盘遮挡文字输入框</h4><blockquote>
+        <h4 id="iOS键盘遮挡文字输入框"><a href="#iOS键盘遮挡文字输入框" class="headerlink" title="iOS键盘遮挡文字输入框"></a>iOS键盘遮挡文字输入框</h4><blockquote>
 <p>当输入框聚焦，键盘弹出时，Android系统会自动露出被遮挡部分，但iOS系统需要开发者根据键盘高度及输入框位置计算遮挡部分，使其上移露出。</p>
 </blockquote>
 <a id="more"></a>
@@ -371,20 +371,20 @@
 <p>上述代码中的<code>this.keyboardHeight</code>变量可以通过Keyboard的<code>keyboardWillShow</code>监听获取。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 添加键盘监听</span></span><br><span class="line"><span class="keyword">this</span>.keyboardWillShowListener = Keyboard.addListener(<span class="string">'keyboardWillShow'</span>, <span class="keyword">this</span>._keyboardWillShow.bind(<span class="keyword">this</span>))</span><br><span class="line"><span class="comment">// 移除键盘监听       </span></span><br><span class="line"><span class="keyword">this</span>.keyboardWillShowListener.remove()</span><br><span class="line"><span class="comment">// 回调方法</span></span><br><span class="line">_keyboardWillShow(e) &#123;</span><br><span class="line">    <span class="keyword">this</span>.keyboardHeight = e.startCoordinates.height</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="2-Android切换TextInput问题"><a href="#2-Android切换TextInput问题" class="headerlink" title="2. Android切换TextInput问题"></a>2. Android切换TextInput问题</h4><blockquote>
+<h4 id="Android切换TextInput问题"><a href="#Android切换TextInput问题" class="headerlink" title="Android切换TextInput问题"></a>Android切换TextInput问题</h4><blockquote>
 <p>在Android系统中，有多个TextInput时，当用户输入完文本后，点击第二个TextInput时，会收起键盘，再次点击TextInput才会获取焦点，弹出键盘输入。</p>
 </blockquote>
 <p>设置TextInput父控件（ScrollView或其子类）的属性<code>keyboardShouldPersistTaps=&quot;always&quot;</code>可以解决此问题。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Determines when the keyboard should stay visible after a tap.</span></span><br><span class="line"><span class="comment"> * - 'never' (the default), tapping outside of the focused text input when the keyboard is up dismisses the keyboard. When this happens, children won't receive the tap.</span></span><br><span class="line"><span class="comment"> * - 'always', the keyboard will not dismiss automatically, and the scroll view will not catch taps, but children of the scroll view can catch taps.</span></span><br><span class="line"><span class="comment"> * - 'handled', the keyboard will not dismiss automatically when the tap was handled by a children, (or captured by an ancestor).</span></span><br><span class="line"><span class="comment"> * - false, deprecated, use 'never' instead</span></span><br><span class="line"><span class="comment"> * - true, deprecated, use 'always' instead</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">keyboardShouldPersistTaps?: boolean | <span class="string">'always'</span> | <span class="string">'never'</span> | <span class="string">'handled'</span>;</span><br></pre></td></tr></table></figure>
 
-<h4 id="3-Android键盘收起TextInput未失去焦点"><a href="#3-Android键盘收起TextInput未失去焦点" class="headerlink" title="3. Android键盘收起TextInput未失去焦点"></a>3. Android键盘收起TextInput未失去焦点</h4><blockquote>
+<h4 id="Android键盘收起TextInput未失去焦点"><a href="#Android键盘收起TextInput未失去焦点" class="headerlink" title="Android键盘收起TextInput未失去焦点"></a>Android键盘收起TextInput未失去焦点</h4><blockquote>
 <p>开发过程中，发现Android机中，点击虚拟按键中的返回键或键盘中的收起键，键盘会收起，但是TextInput的焦点还在，这时TextInput中的onEndEditing等不会被调用，导致部分数据丢失。</p>
 </blockquote>
 <p><img src="media/15966935763596/15966969538662.jpg" alt="截图1-w250"></p>
 <p>可以监听键盘隐藏的回调，使TextInput失去焦点。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">_keyboardDidHide(e) &#123;</span><br><span class="line">   <span class="keyword">let</span> dismissKeyboard = <span class="built_in">require</span>(<span class="string">'dismissKeyboard'</span>)</span><br><span class="line">    dismissKeyboard()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="4-Android监听键盘无效"><a href="#4-Android监听键盘无效" class="headerlink" title="4. Android监听键盘无效"></a>4. Android监听键盘无效</h4><p>Android系统下监听不到keyboardWillShow和keyboardWillHide两个回调，可以监听keyboardDidShow和keyboardDidHide。</p>
+<h4 id="Android监听键盘无效"><a href="#Android监听键盘无效" class="headerlink" title="Android监听键盘无效"></a>Android监听键盘无效</h4><p>Android系统下监听不到keyboardWillShow和keyboardWillHide两个回调，可以监听keyboardDidShow和keyboardDidHide。</p>
 
       
     </div>
@@ -562,7 +562,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-iOS键盘遮挡文字输入框"><span class="nav-number">1.</span> <span class="nav-text">1. iOS键盘遮挡文字输入框</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Android切换TextInput问题"><span class="nav-number">2.</span> <span class="nav-text">2. Android切换TextInput问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Android键盘收起TextInput未失去焦点"><span class="nav-number">3.</span> <span class="nav-text">3. Android键盘收起TextInput未失去焦点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Android监听键盘无效"><span class="nav-number">4.</span> <span class="nav-text">4. Android监听键盘无效</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#iOS键盘遮挡文字输入框"><span class="nav-number">1.</span> <span class="nav-text">iOS键盘遮挡文字输入框</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Android切换TextInput问题"><span class="nav-number">2.</span> <span class="nav-text">Android切换TextInput问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Android键盘收起TextInput未失去焦点"><span class="nav-number">3.</span> <span class="nav-text">Android键盘收起TextInput未失去焦点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Android监听键盘无效"><span class="nav-number">4.</span> <span class="nav-text">Android监听键盘无效</span></a></li></ol></div>
             
 
           </div>
