@@ -79,16 +79,16 @@
 
 
 
-<meta name="description" content="1. iOS键盘遮挡文字输入框 当输入框聚焦，键盘弹出时，Android系统会自动露出被遮挡部分，但iOS系统需要开发者根据键盘高度及输入框位置进行计算遮挡部分，使其上移露出。  通过查阅文档发现，React Native的UIManager.measure可以获取当前控件在屏幕中的位置。 1234567891011121314151617181920&#x2F;** * Determines the lo">
+<meta name="description" content="1. iOS键盘遮挡文字输入框 当输入框聚焦，键盘弹出时，Android系统会自动露出被遮挡部分，但iOS系统需要开发者根据键盘高度及输入框位置进行计算遮挡部分，使其上移露出。">
 <meta name="keywords" content="React Native">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React Native键盘问题汇总">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;08&#x2F;06&#x2F;ReactNative-%E9%94%AE%E7%9B%98%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB&#x2F;index.html">
 <meta property="og:site_name" content="渡口">
-<meta property="og:description" content="1. iOS键盘遮挡文字输入框 当输入框聚焦，键盘弹出时，Android系统会自动露出被遮挡部分，但iOS系统需要开发者根据键盘高度及输入框位置进行计算遮挡部分，使其上移露出。  通过查阅文档发现，React Native的UIManager.measure可以获取当前控件在屏幕中的位置。 1234567891011121314151617181920&#x2F;** * Determines the lo">
+<meta property="og:description" content="1. iOS键盘遮挡文字输入框 当输入框聚焦，键盘弹出时，Android系统会自动露出被遮挡部分，但iOS系统需要开发者根据键盘高度及输入框位置进行计算遮挡部分，使其上移露出。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;08&#x2F;06&#x2F;ReactNative-%E9%94%AE%E7%9B%98%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB&#x2F;media&#x2F;15966935763596&#x2F;15966969538662.jpg">
-<meta property="og:updated_time" content="2020-08-06T07:15:39.050Z">
+<meta property="og:updated_time" content="2020-08-06T07:16:07.365Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;08&#x2F;06&#x2F;ReactNative-%E9%94%AE%E7%9B%98%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB&#x2F;media&#x2F;15966935763596&#x2F;15966969538662.jpg">
 
@@ -355,6 +355,8 @@
         <h4 id="1-iOS键盘遮挡文字输入框"><a href="#1-iOS键盘遮挡文字输入框" class="headerlink" title="1. iOS键盘遮挡文字输入框"></a>1. iOS键盘遮挡文字输入框</h4><blockquote>
 <p>当输入框聚焦，键盘弹出时，Android系统会自动露出被遮挡部分，但iOS系统需要开发者根据键盘高度及输入框位置进行计算遮挡部分，使其上移露出。</p>
 </blockquote>
+<a id="more"></a>
+
 <p>通过查阅文档发现，React Native的UIManager.measure可以获取当前控件在屏幕中的位置。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Determines the location on screen, width, and height of the given view and</span></span><br><span class="line"><span class="comment"> * returns the values via an async callback. If successful, the callback will</span></span><br><span class="line"><span class="comment"> * be called with the following arguments:</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  - x</span></span><br><span class="line"><span class="comment"> *  - y</span></span><br><span class="line"><span class="comment"> *  - width</span></span><br><span class="line"><span class="comment"> *  - height</span></span><br><span class="line"><span class="comment"> *  - pageX</span></span><br><span class="line"><span class="comment"> *  - pageY</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Note that these measurements are not available until after the rendering</span></span><br><span class="line"><span class="comment"> * has been completed in native. If you need the measurements as soon as</span></span><br><span class="line"><span class="comment"> * possible, consider using the [`onLayout`</span></span><br><span class="line"><span class="comment"> * prop](docs/view.html#onlayout) instead.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @deprecated Use `ref.measure` instead.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">measure(node: number, <span class="attr">callback</span>: MeasureOnSuccessCallback): <span class="keyword">void</span>;</span><br></pre></td></tr></table></figure>
 
