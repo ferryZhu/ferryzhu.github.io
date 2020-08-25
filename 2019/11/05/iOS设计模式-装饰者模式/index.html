@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="渡口">
 <meta property="og:description" content="一、定义 装饰者模式动态的将责任附加到对象上。若要扩展功能，装饰者提供了比继承更有弹性的替代方案。  装饰者模式采用了多用组合，少用继承、对扩展开放，对修改关闭的OO原则。一个组件可以被无数个装饰者包装。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-08-25T07:27:34.625Z">
+<meta property="og:updated_time" content="2020-08-25T07:29:52.828Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -370,7 +370,6 @@
 <li>创建咖啡协议，所有的咖啡都有名称和价格属性。</li>
 </ol>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Baverage.h</span></span><br><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">Baverage</span> &lt;<span class="title">NSObject</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">@required</span></span><br><span class="line">    </span><br><span class="line">- (<span class="built_in">NSString</span> *)name;</span><br><span class="line">     </span><br><span class="line">- (<span class="keyword">double</span>)cost;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-
 
 <ol start="2">
 <li>创建调料协议，装饰者和被装饰者必须是一样的类型，也就是需要有共同的超类（咖啡和调料的共同超类是NSObject，分别实现不同的协议）</li>
